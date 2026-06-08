@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+:root {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  color: #122033;
+  background: #f7fbff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    linear-gradient(90deg, rgba(14, 116, 144, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(14, 116, 144, 0.035) 1px, transparent 1px),
+    #f7fbff;
+  background-size: 24px 24px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.section {
+  @apply px-4 py-14 sm:px-6 lg:px-8;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: section-rise 0.7s ease forwards;
+}
+
+.section:nth-of-type(2) {
+  animation-delay: 0.1s;
+}
+
+.section:nth-of-type(3) {
+  animation-delay: 0.18s;
+}
+
+.section:nth-of-type(4) {
+  animation-delay: 0.26s;
+}
+
+.container-page {
+  @apply mx-auto max-w-7xl;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-sky-600 bg-sky-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-sky-200 bg-white px-5 py-3 text-sm font-semibold text-sky-700 shadow-sm transition hover:-translate-y-0.5 hover:border-sky-300 hover:bg-sky-50;
+}
+
+.field {
+  @apply w-full rounded-md border border-slate-200 bg-white px-3 py-3 text-sm outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-100;
+}
+
+.label {
+  @apply mb-2 block text-sm font-semibold text-stone-700;
+}
+
+.card {
+  @apply rounded-md border border-sky-100 bg-white shadow-sm transition duration-300;
+  box-shadow: 0 4px 0 rgba(14, 116, 144, 0.06);
+}
+
+.card:hover {
+  box-shadow: 0 7px 0 rgba(14, 116, 144, 0.09);
+}
+
+.paper-panel {
+  @apply rounded-md border border-sky-200 bg-white shadow-sm;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+}
+
+.line-note {
+  @apply border-l-4 border-sky-400 bg-sky-50 px-4 py-3 text-sm text-slate-700;
+}
+
+.status-chip {
+  @apply inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-slate-700;
+}
+
+.vintage-stamp {
+  @apply inline-flex rotate-[-2deg] items-center rounded-sm border-2 border-dashed border-sky-500 bg-white px-3 py-1 text-xs font-black uppercase tracking-wide text-sky-700;
+}
+
+@keyframes section-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes board-slide {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.paper-panel > * {
+  animation: board-slide 0.55s ease both;
+}
+
+.paper-panel > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.paper-panel > *:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section,
+  .paper-panel > * {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
