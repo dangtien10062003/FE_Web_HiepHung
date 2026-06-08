@@ -271,23 +271,52 @@ function Prices({ prices, loading, error }) {
 
 function Process() {
   const steps = [
-    ['Đặt lịch', 'Khách chọn dịch vụ, giờ nhận và ghi chú món đồ.'],
-    ['Xác nhận', 'Nhân viên gọi/Zalo để chốt giờ và khu vực giao nhận.'],
-    ['Nhận đồ', 'Kiểm số lượng, tình trạng và các món cần xử lý riêng.'],
-    ['Xử lý', 'Giặt, sấy, ủi hoặc vệ sinh theo đúng nhóm dịch vụ.'],
-    ['Trả đồ', 'Giao lại, cập nhật hoàn tất và nhận phản hồi.'],
+    ['Đặt lịch', 'Khách chọn dịch vụ, giờ nhận và ghi chú món đồ.', CalendarCheck],
+    ['Xác nhận', 'Nhân viên gọi/Zalo để chốt giờ và khu vực giao nhận.', Phone],
+    ['Nhận đồ', 'Kiểm số lượng, tình trạng và các món cần xử lý riêng.', PackageCheck],
+    ['Xử lý', 'Giặt, sấy, ủi hoặc vệ sinh theo đúng nhóm dịch vụ.', WashingMachine],
+    ['Trả đồ', 'Giao lại, cập nhật hoàn tất và nhận phản hồi.', Truck],
   ]
   return (
-    <section id="process" className="section bg-sky-50">
+    <section id="quytrinh" className="section process-section bg-sky-50">
       <div className="container-page">
-        <SectionTitle eyebrow="Quy trình" title="Nhìn vào là biết đơn đang nằm ở đâu" />
-        <div className="grid gap-4 md:grid-cols-5">
-          {steps.map(([step, text], index) => (
-            <div key={step} className="card p-5">
-              <span className="grid size-10 place-items-center rounded-md bg-sky-600 font-bold text-white">{index + 1}</span>
-              <p className="mt-4 font-semibold text-slate-900">{step}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
+        <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+          <SectionTitle
+            eyebrow="Quy trình"
+            title="Đường đi của một đơn giặt từ lúc đặt tới lúc trả"
+            description="Thiết kế lại theo dạng luồng xử lý: nhìn vào thấy ngay từng chặng, ai đang phụ trách và bước nào cần khách xác nhận."
+          />
+          <div className="process-summary">
+            <p className="text-sm font-black uppercase tracking-wide text-sky-700">Theo dõi rõ từng bước</p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              {['Nhận lịch', 'Xử lý tại tiệm', 'Trả tận nơi'].map((item) => (
+                <span key={item} className="rounded-md border border-sky-200 bg-white px-4 py-3 text-sm font-bold text-slate-800 shadow-sm shadow-sky-100">
+                  {item}
+                </span>
+              ))}
             </div>
+          </div>
+        </div>
+        <div className="process-roadmap">
+          <div className="process-line" aria-hidden="true" />
+          {steps.map(([step, text, Icon], index) => (
+            <article key={step} className={`process-step ${index % 2 ? 'process-step-lower' : ''}`}>
+              <div className="process-node">
+                <span>{String(index + 1).padStart(2, '0')}</span>
+              </div>
+              <div className="process-card">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-wide text-sky-700">Bước {index + 1}</p>
+                    <h3 className="mt-2 text-xl font-black text-slate-950">{step}</h3>
+                  </div>
+                  <span className="grid size-12 shrink-0 place-items-center rounded-md bg-sky-100 text-sky-700">
+                    <Icon size={24} />
+                  </span>
+                </div>
+                <p className="mt-4 text-sm leading-6 text-slate-600">{text}</p>
+              </div>
+            </article>
           ))}
         </div>
       </div>
