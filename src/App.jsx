@@ -113,20 +113,21 @@ function Hero({ store }) {
   const notes = ['Kiểm đồ khi nhận', 'Báo trước phần cần xử lý riêng', 'Ghi chú mùi hương/sấy khô kỹ']
 
   return (
-    <section id="home" className="section bg-sky-50 pb-14 pt-10">
-      <div className="container-page grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr]">
-        <div>
+    <section id="home" className="section hero-shell pb-16 pt-10">
+      <div className="container-page relative grid items-center gap-12 lg:grid-cols-[0.88fr_1.12fr]">
+        <div className="relative z-10">
           <div className="mb-5 flex flex-wrap items-center gap-3">
-            <span className="trust-badge">Quy trình rõ ràng</span>
+            <span className="trust-badge">Nhận lịch trong ngày</span>
             <span className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700">
-              <BadgeCheck size={17} className="text-sky-700" /> Tiệm giặt sấy gia đình, nhận đồ theo lịch hẹn
+              <BadgeCheck size={17} className="text-sky-700" /> Giặt sấy gia đình, giao nhận quanh khu vực
             </span>
           </div>
-          <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-slate-950 sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-3xl text-4xl font-black leading-[1.04] text-slate-950 sm:text-5xl lg:text-7xl">
             Giặt Sấy Hiệp Hưng
+            <span className="mt-2 block text-sky-700">gọn trong một lịch hẹn</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-700">
-            Đặt lịch nhận đồ tận nhà, chọn đúng nhóm dịch vụ và xem trước giá tham khảo. Thông tin được trình bày theo cách khách đi giặt thật cần: khu vực, giờ nhận, tình trạng đồ và thời gian trả.
+          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-700">
+            Khách chỉ cần chọn dịch vụ, ghi tình trạng đồ và giờ nhận. Hiệp Hưng gọi xác nhận lại trước khi xử lý các món cần báo giá riêng.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link className="btn-primary" to="/dat-lich">Đặt lịch ngay <ChevronRight size={18} /></Link>
@@ -138,12 +139,19 @@ function Hero({ store }) {
             ))}
           </div>
         </div>
-        <div className="grid gap-4">
-          <div className="relative overflow-hidden rounded-md border border-sky-100 bg-white shadow-lg shadow-sky-100">
+        <div className="hero-visual grid gap-4">
+          <div className="relative overflow-hidden rounded-md border border-sky-100 bg-white shadow-xl shadow-sky-100">
             <img src={heroImage} alt="Tiệm giặt sấy Hiệp Hưng" className="aspect-[16/10] w-full object-cover" />
-            <div className="absolute bottom-4 left-4 max-w-[75%] rounded-md border border-sky-100 bg-white/95 p-4 shadow-lg shadow-sky-100">
-              <p className="text-sm font-semibold text-slate-900">Hotline nhận lịch</p>
-              <a href={`tel:${store.hotline}`} className="mt-1 flex items-center gap-2 text-lg font-bold text-sky-700"><Phone size={18} /> {store.hotline}</a>
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/65 to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-end">
+              <div className="rounded-md border border-white/30 bg-white/95 p-4 shadow-lg shadow-sky-100">
+                <p className="text-sm font-semibold text-slate-900">Hotline nhận lịch</p>
+                <a href={`tel:${store.hotline}`} className="mt-1 flex items-center gap-2 text-lg font-bold text-sky-700"><Phone size={18} /> {store.hotline}</a>
+              </div>
+              <div className="hidden rounded-md bg-sky-600 px-4 py-3 text-right text-white shadow-lg sm:block">
+                <p className="text-xs font-bold uppercase tracking-wide text-sky-100">Hôm nay</p>
+                <p className="text-xl font-black">Ưu tiên đơn gần</p>
+              </div>
             </div>
           </div>
           <div className="info-panel grid gap-3 p-4 sm:grid-cols-3">
@@ -154,6 +162,7 @@ function Hero({ store }) {
               </div>
             ))}
           </div>
+          <div className="water-strip" aria-hidden="true" />
         </div>
       </div>
     </section>
@@ -489,20 +498,21 @@ function PublicPage({ title, children }) {
 
 function HomeSummary() {
   const cards = [
-    ['Khu vực nhận đồ', 'Ưu tiên bán kính 3km, địa chỉ xa hơn sẽ được gọi xác nhận trước.', '/lien-he'],
-    ['Bảng giá tại quầy', 'Xem theo từng nhóm đồ, có ghi chú khi cần báo giá riêng.', '/bang-gia'],
-    ['Lịch nhận hôm nay', 'Gửi giờ hẹn, địa chỉ và ghi chú món đồ để nhân viên sắp tuyến.', '/dat-lich'],
+    ['Khu vực nhận đồ', 'Ưu tiên bán kính 3km, địa chỉ xa hơn sẽ được gọi xác nhận trước.', '/lien-he', '01'],
+    ['Bảng giá tại quầy', 'Xem theo từng nhóm đồ, có ghi chú khi cần báo giá riêng.', '/bang-gia', '02'],
+    ['Lịch nhận hôm nay', 'Gửi giờ hẹn, địa chỉ và ghi chú món đồ để nhân viên sắp tuyến.', '/dat-lich', '03'],
   ]
   return (
     <section className="section bg-white">
       <div className="container-page">
-        <SectionTitle eyebrow="Đi thẳng vào việc" title="Trang chủ chỉ giữ những câu khách cần trả lời ngay" description="Không dồn hết nội dung vào một landing dài. Mỗi nhóm thông tin được tách thành trang riêng, còn trang chủ đóng vai trò như bảng hướng dẫn nhanh của tiệm." />
-        <div className="grid gap-4 md:grid-cols-3">
-          {cards.map(([title, text, to]) => (
-            <Link key={to} to={to} className="card p-6 transition hover:-translate-y-1 hover:shadow-md">
-              <h3 className="text-xl font-bold text-slate-950">{title}</h3>
-              <p className="mt-3 leading-7 text-slate-600">{text}</p>
-              <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-sky-700">Xem chi tiết <ChevronRight size={17} /></span>
+        <SectionTitle eyebrow="Đi thẳng vào việc" title="Trang chủ đổi thành bảng điều hướng nhanh" description="Mỗi khối trả lời một câu hỏi thật của khách: tiệm có nhận khu vực mình không, giá khoảng bao nhiêu, và đặt lịch ở đâu." />
+        <div className="feature-grid grid gap-4 md:grid-cols-3">
+          {cards.map(([title, text, to, number], index) => (
+            <Link key={to} to={to} className={`feature-card card p-6 transition hover:-translate-y-1 hover:shadow-md ${index === 0 ? 'md:col-span-2 bg-sky-600 text-white' : ''}`}>
+              <span className={index === 0 ? 'text-sm font-black text-sky-100' : 'text-sm font-black text-sky-700'}>{number}</span>
+              <h3 className={`mt-8 text-2xl font-black ${index === 0 ? 'text-white' : 'text-slate-950'}`}>{title}</h3>
+              <p className={`mt-3 max-w-xl leading-7 ${index === 0 ? 'text-sky-50' : 'text-slate-600'}`}>{text}</p>
+              <span className={`mt-6 inline-flex items-center gap-2 text-sm font-bold ${index === 0 ? 'text-white' : 'text-sky-700'}`}>Xem chi tiết <ChevronRight size={17} /></span>
             </Link>
           ))}
         </div>

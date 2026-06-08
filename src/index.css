@@ -34,8 +34,9 @@ textarea {
 .section {
   @apply px-4 py-16 sm:px-6 lg:px-8;
   opacity: 0;
-  transform: translateY(18px);
-  animation: section-rise 0.7s ease forwards;
+  filter: blur(8px);
+  transform: translateY(34px);
+  animation: section-rise 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 .section:nth-of-type(2) {
@@ -73,6 +74,7 @@ textarea {
 .card {
   @apply rounded-md border border-sky-100 bg-white/95 shadow-sm transition duration-300;
   box-shadow: 0 18px 44px rgba(14, 116, 144, 0.08);
+  animation: card-rise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .card:hover {
@@ -96,14 +98,87 @@ textarea {
   @apply inline-flex items-center rounded-full border border-sky-200 bg-white px-3 py-1 text-xs font-black uppercase tracking-wide text-sky-700 shadow-sm;
 }
 
+.hero-shell {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 72% 24%, rgba(14, 165, 233, 0.2), transparent 28%),
+    linear-gradient(135deg, #eef9ff 0%, #ffffff 52%, #e0f2fe 100%);
+}
+
+.hero-shell::before {
+  content: "";
+  position: absolute;
+  inset: auto -12% -26% 44%;
+  height: 360px;
+  border-radius: 999px;
+  background: rgba(14, 165, 233, 0.12);
+  transform: rotate(-10deg);
+}
+
+.hero-visual {
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+.water-strip {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, transparent, rgba(2, 132, 199, 0.42), transparent),
+    #e0f2fe;
+  background-size: 220px 100%, auto;
+  animation: water-move 2.8s linear infinite;
+}
+
+.feature-card:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.feature-card:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
 @keyframes section-rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    filter: blur(8px);
+    transform: translateY(34px);
   }
   to {
     opacity: 1;
+    filter: blur(0);
     transform: translateY(0);
+  }
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes water-move {
+  from {
+    background-position: -220px 0, 0 0;
+  }
+  to {
+    background-position: 220px 0, 0 0;
   }
 }
 
@@ -132,8 +207,12 @@ textarea {
 
 @media (prefers-reduced-motion: reduce) {
   .section,
+  .card,
+  .hero-visual,
+  .water-strip,
   .info-panel > * {
     opacity: 1;
+    filter: none;
     transform: none;
     animation: none;
   }
