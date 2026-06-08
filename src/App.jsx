@@ -59,19 +59,10 @@ const defaultStore = {
   deliveryPolicy: 'Hỗ trợ giao nhận trong bán kính 3km',
 }
 
-const statusLabels = {
-  Pending: 'Chờ xác nhận',
-  Confirmed: 'Đã xác nhận',
-  PickedUp: 'Đã nhận đồ',
-  Washing: 'Đang giặt',
-  Completed: 'Hoàn tất',
-  Cancelled: 'Đã hủy',
-}
-
 function Header({ store }) {
   const [open, setOpen] = useState(false)
   const menu = (
-    <nav className="flex flex-col gap-3 text-sm font-medium text-stone-700 lg:flex-row lg:items-center lg:gap-6">
+    <nav className="flex flex-col gap-3 text-sm font-medium text-slate-700 lg:flex-row lg:items-center lg:gap-6">
       {navItems.map(([label, href]) => (
         <Link key={href} to={href} onClick={() => setOpen(false)} className="transition hover:text-sky-700">
           {label}
@@ -83,7 +74,7 @@ function Header({ store }) {
   return (
     <header className="sticky top-0 z-40 border-b border-sky-100 bg-white/95 backdrop-blur">
       <div className="container-page flex min-h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-3 font-bold text-stone-950">
+        <Link to="/" className="flex items-center gap-3 font-bold text-slate-950">
           <span className="grid size-10 place-items-center rounded-md border border-sky-200 bg-sky-100 text-sky-700"><WashingMachine size={22} /></span>
           <span>{store.brandName}</span>
         </Link>
@@ -107,8 +98,8 @@ function SectionTitle({ eyebrow, title, description }) {
   return (
     <div className="mb-10 max-w-3xl">
       <p className="mb-3 text-sm font-bold uppercase tracking-wide text-sky-700">{eyebrow}</p>
-      <h2 className="text-3xl font-bold text-stone-950 sm:text-4xl">{title}</h2>
-      {description && <p className="mt-4 text-base leading-7 text-stone-600">{description}</p>}
+      <h2 className="text-3xl font-bold text-slate-950 sm:text-4xl">{title}</h2>
+      {description && <p className="mt-4 text-base leading-7 text-slate-600">{description}</p>}
     </div>
   )
 }
@@ -116,32 +107,32 @@ function SectionTitle({ eyebrow, title, description }) {
 function Hero({ store }) {
   const shopBoard = [
     ['Nhận đồ', '7:00 - 19:30'],
-    ['Trả đồ', 'Sau 24 - 48 giờ'],
-    ['Khu vực', 'Bán kính 3km'],
+    ['Hoàn tất', '24 - 48 giờ'],
+    ['Giao nhận', 'Trong 3km'],
   ]
-  const notes = ['Tách đồ trắng/màu khi nhận', 'Đồ cần xử lý riêng sẽ báo giá trước', 'Có ghi chú mùi hương hoặc sấy khô kỹ']
+  const notes = ['Kiểm đồ khi nhận', 'Báo trước phần cần xử lý riêng', 'Ghi chú mùi hương/sấy khô kỹ']
 
   return (
-    <section id="home" className="section bg-sky-50 pb-12 pt-8">
-      <div className="container-page grid items-center gap-8 lg:grid-cols-[1.02fr_0.98fr]">
+    <section id="home" className="section bg-sky-50 pb-14 pt-10">
+      <div className="container-page grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr]">
         <div>
           <div className="mb-5 flex flex-wrap items-center gap-3">
-            <span className="vintage-stamp">Nhận đồ mỗi ngày</span>
+            <span className="trust-badge">Quy trình rõ ràng</span>
             <span className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700">
               <BadgeCheck size={17} className="text-sky-700" /> Tiệm giặt sấy gia đình, nhận đồ theo lịch hẹn
             </span>
           </div>
-          <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-stone-950 sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-3xl text-4xl font-extrabold leading-tight text-slate-950 sm:text-5xl lg:text-6xl">
             Giặt Sấy Hiệp Hưng
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-stone-700">
-            Nhận đồ tận nhà, phân loại trước khi giặt, ghi rõ giờ hẹn và tình trạng xử lý để khách dễ theo dõi. Trang này được sắp lại như cách một tiệm thật tư vấn: xem khu vực, chọn dịch vụ, nắm giá rồi đặt lịch.
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-700">
+            Đặt lịch nhận đồ tận nhà, chọn đúng nhóm dịch vụ và xem trước giá tham khảo. Thông tin được trình bày theo cách khách đi giặt thật cần: khu vực, giờ nhận, tình trạng đồ và thời gian trả.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link className="btn-primary" to="/dat-lich">Đặt lịch ngay <ChevronRight size={18} /></Link>
             <Link className="btn-secondary" to="/bang-gia">Xem bảng giá</Link>
           </div>
-          <div className="mt-8 grid gap-3 text-sm text-stone-700 sm:grid-cols-3">
+          <div className="mt-8 grid gap-3 text-sm text-slate-700 sm:grid-cols-3">
             {notes.map((item) => (
               <span key={item} className="inline-flex items-center gap-2"><CheckCircle2 className="text-sky-700" size={18} /> {item}</span>
             ))}
@@ -150,16 +141,16 @@ function Hero({ store }) {
         <div className="grid gap-4">
           <div className="relative overflow-hidden rounded-md border border-sky-100 bg-white shadow-lg shadow-sky-100">
             <img src={heroImage} alt="Tiệm giặt sấy Hiệp Hưng" className="aspect-[16/10] w-full object-cover" />
-            <div className="absolute bottom-4 left-4 max-w-[75%] rounded-md border border-sky-100 bg-white/95 p-4 shadow-lg">
-              <p className="text-sm font-semibold text-stone-900">Hotline nhận lịch</p>
+            <div className="absolute bottom-4 left-4 max-w-[75%] rounded-md border border-sky-100 bg-white/95 p-4 shadow-lg shadow-sky-100">
+              <p className="text-sm font-semibold text-slate-900">Hotline nhận lịch</p>
               <a href={`tel:${store.hotline}`} className="mt-1 flex items-center gap-2 text-lg font-bold text-sky-700"><Phone size={18} /> {store.hotline}</a>
             </div>
           </div>
-          <div className="paper-panel grid gap-3 p-4 sm:grid-cols-3">
+          <div className="info-panel grid gap-3 p-4 sm:grid-cols-3">
             {shopBoard.map(([label, value]) => (
-              <div key={label} className="border-b border-stone-200 pb-3 last:border-0 sm:border-b-0 sm:border-r sm:pb-0 sm:pr-3 sm:last:border-r-0">
-                <p className="text-xs font-bold uppercase text-stone-500">{label}</p>
-                <p className="mt-1 text-base font-bold text-stone-950">{value}</p>
+              <div key={label} className="border-b border-sky-100 pb-3 last:border-0 sm:border-b-0 sm:border-r sm:pb-0 sm:pr-3 sm:last:border-r-0">
+                <p className="text-xs font-bold uppercase text-slate-500">{label}</p>
+                <p className="mt-1 text-base font-bold text-slate-950">{value}</p>
               </div>
             ))}
           </div>
@@ -174,21 +165,21 @@ function About() {
     ['Kiểm đồ lúc nhận', 'Ghi lại loại đồ, số kg ước tính và các món cần xử lý riêng.'],
     ['Phân loại trước khi giặt', 'Tách đồ trắng/màu, đồ dày/mỏng, đồ dễ ra màu để hạn chế lem màu.'],
     ['Báo khách trước khi phát sinh', 'Đồ cao cấp, vết bẩn khó hoặc giày cần làm kỹ sẽ được xác nhận trước.'],
-    ['Theo dõi trạng thái', 'Đơn có trạng thái từ chờ xác nhận tới hoàn tất để admin dễ xử lý.'],
+    ['Theo dõi trạng thái', 'Đơn có trạng thái từ chờ xác nhận tới hoàn tất để nhân viên dễ xử lý.'],
   ]
   return (
     <section id="about" className="section bg-white">
       <div className="container-page grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
         <div>
-          <SectionTitle eyebrow="Giới thiệu" title="Không nói nhiều, làm rõ từng công đoạn" description="Thay vì chỉ hứa sạch và thơm, giao diện mới cho khách thấy tiệm xử lý đơn như thế nào: nhận đồ, kiểm tình trạng, báo giá phần phát sinh, rồi cập nhật trạng thái." />
-          <div className="line-note">Ghi chú thật cho khách: đồ có vết dầu, mốc, lem màu hoặc chất liệu đặc biệt nên báo trước khi đặt lịch để nhân viên tư vấn cách xử lý.</div>
+          <SectionTitle eyebrow="Giới thiệu" title="Tập trung vào những điểm khách hay lo khi gửi đồ" description="Trang không chỉ nói sạch và thơm. Mỗi phần đều giải thích một việc cụ thể: nhân viên kiểm gì khi nhận, lúc nào cần báo giá thêm, và vì sao một số đơn cần xác nhận khoảng cách." />
+          <div className="line-note">Đồ có vết dầu, mốc, lem màu hoặc chất liệu đặc biệt nên ghi chú trước khi đặt lịch để nhân viên tư vấn cách xử lý.</div>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {strengths.map(([title, text]) => (
-            <div key={title} className="paper-panel p-5">
+            <div key={title} className="info-panel p-5">
               <Sparkles className="mb-4 text-sky-600" size={22} />
-              <p className="font-bold text-stone-950">{title}</p>
-              <p className="mt-2 text-sm leading-6 text-stone-600">{text}</p>
+              <p className="font-bold text-slate-950">{title}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
             </div>
           ))}
         </div>
@@ -214,8 +205,8 @@ function Services({ services }) {
                   <span className="status-chip">{serviceNotes[index % serviceNotes.length]}</span>
                 </div>
                 <div>
-                  <h3 className="mt-5 text-xl font-bold text-stone-950">{service.name}</h3>
-                  <p className="mt-3 leading-7 text-stone-600">{service.description}</p>
+                  <h3 className="mt-5 text-xl font-bold text-slate-950">{service.name}</h3>
+                  <p className="mt-3 leading-7 text-slate-600">{service.description}</p>
                 </div>
                 <Link to="/dat-lich" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-sky-700">Đặt dịch vụ này <ChevronRight size={16} /></Link>
               </article>
@@ -235,7 +226,7 @@ function Prices({ prices, loading, error }) {
         {loading && <StateLine icon={<LoaderCircle className="animate-spin" />} text="Đang tải bảng giá..." />}
         {error && <StateLine text="Bảng giá đang tạm hiển thị theo dữ liệu lưu sẵn, nhân viên sẽ xác nhận lại khi nhận đơn." />}
         <div className="grid gap-4 lg:grid-cols-[1fr_360px]">
-          <div className="overflow-hidden rounded-md border border-stone-200 bg-white shadow-sm">
+          <div className="overflow-hidden rounded-md border border-sky-100 bg-white shadow-sm">
             <table className="w-full min-w-[680px] text-left text-sm">
               <thead className="bg-sky-50 text-slate-700">
                 <tr>
@@ -244,20 +235,20 @@ function Prices({ prices, loading, error }) {
                   <th className="px-5 py-4">Ghi chú tại quầy</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-stone-100">
+              <tbody className="divide-y divide-sky-100">
                 {prices.map((item) => (
                   <tr key={item.id || item.name} className="transition hover:bg-sky-50">
-                    <td className="px-5 py-4 font-semibold text-stone-900">{item.name}</td>
+                    <td className="px-5 py-4 font-semibold text-slate-900">{item.name}</td>
                     <td className="px-5 py-4 text-lg font-bold text-sky-700">{item.priceText}</td>
-                    <td className="px-5 py-4 text-stone-600">{item.note}</td>
+                    <td className="px-5 py-4 text-slate-600">{item.note}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <aside className="paper-panel p-5">
-            <h3 className="text-lg font-bold text-stone-950">Trước khi chốt giá</h3>
-            <div className="mt-4 grid gap-3 text-sm leading-6 text-stone-700">
+          <aside className="info-panel p-5">
+            <h3 className="text-lg font-bold text-slate-950">Trước khi chốt giá</h3>
+            <div className="mt-4 grid gap-3 text-sm leading-6 text-slate-700">
               <p>Đồ quá dày, vết bẩn lâu ngày hoặc chất liệu cần giữ form sẽ được báo lại trước khi xử lý.</p>
               <p>Đơn giao nhận ngoài bán kính 3km cần nhân viên xác nhận thêm khoảng cách.</p>
               <p>Khách có thể ghi chú “không dùng mùi thơm mạnh” trong form đặt lịch.</p>
@@ -285,8 +276,8 @@ function Process() {
           {steps.map(([step, text], index) => (
             <div key={step} className="card p-5">
               <span className="grid size-10 place-items-center rounded-md bg-sky-600 font-bold text-white">{index + 1}</span>
-              <p className="mt-4 font-semibold text-stone-900">{step}</p>
-              <p className="mt-2 text-sm leading-6 text-stone-600">{text}</p>
+              <p className="mt-4 font-semibold text-slate-900">{step}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{text}</p>
             </div>
           ))}
         </div>
@@ -373,7 +364,7 @@ function BookingForm({ services }) {
             <span className="label">Ghi chú thêm</span>
             <textarea className="field min-h-28" value={form.note} onChange={(event) => setField('note', event.target.value)} />
           </label>
-          <label className="flex gap-3 text-sm text-stone-700 sm:col-span-2">
+          <label className="flex gap-3 text-sm text-slate-700 sm:col-span-2">
             <input type="checkbox" checked={form.consent} onChange={(event) => setField('consent', event.target.checked)} className="mt-1 size-4" />
             <span>Tôi đồng ý để Hiệp Hưng liên hệ xác nhận đơn</span>
           </label>
@@ -401,7 +392,7 @@ function ErrorText({ text }) {
 }
 
 function StateLine({ icon, text }) {
-  return <p className="mb-4 inline-flex items-center gap-2 rounded-md bg-stone-100 px-3 py-2 text-sm text-stone-700">{icon} {text}</p>
+  return <p className="mb-4 inline-flex items-center gap-2 rounded-md bg-sky-50 px-3 py-2 text-sm text-slate-700">{icon} {text}</p>
 }
 
 function TestimonialsFaq() {
@@ -419,7 +410,7 @@ function TestimonialsFaq() {
           <SectionTitle eyebrow="Ghi nhận" title="Những chi tiết khách thường hỏi trước khi gửi đồ" />
           <div className="grid gap-4">
             {['Đồ trắng và đồ màu có được tách riêng không?', 'Nếu đồ chưa khô kỹ có được sấy thêm không?', 'Giá chăn ga tính theo bộ hay theo kích thước?', 'Giày có khử mùi và làm khô riêng không?'].map((quote) => (
-              <div key={quote} className="paper-panel flex items-center gap-3 p-5 text-stone-800">
+              <div key={quote} className="info-panel flex items-center gap-3 p-5 text-slate-800">
                 <CheckCircle2 className="shrink-0 text-sky-700" size={20} />
                 <p className="font-semibold">{quote}</p>
               </div>
@@ -431,8 +422,8 @@ function TestimonialsFaq() {
           <div className="grid gap-3">
             {faqs.map(([question, answer]) => (
               <details key={question} className="card p-5">
-                <summary className="cursor-pointer font-semibold text-stone-900">{question}</summary>
-                <p className="mt-3 leading-7 text-stone-600">{answer}</p>
+                <summary className="cursor-pointer font-semibold text-slate-900">{question}</summary>
+                <p className="mt-3 leading-7 text-slate-600">{answer}</p>
               </details>
             ))}
           </div>
@@ -444,11 +435,11 @@ function TestimonialsFaq() {
 
 function Footer({ store }) {
   return (
-    <footer id="contact" className="bg-stone-950 px-4 py-10 text-stone-200 sm:px-6 lg:px-8">
+    <footer id="contact" className="bg-slate-950 px-4 py-10 text-slate-200 sm:px-6 lg:px-8">
       <div className="container-page grid gap-6 md:grid-cols-4">
         <div>
           <h3 className="text-xl font-bold text-white">{store.brandName}</h3>
-          <p className="mt-3 text-sm leading-6 text-stone-300">{store.deliveryPolicy}</p>
+          <p className="mt-3 text-sm leading-6 text-slate-300">{store.deliveryPolicy}</p>
         </div>
         <p className="flex gap-2 text-sm"><MapPin size={18} /> {store.address}</p>
         <p className="flex gap-2 text-sm"><Clock size={18} /> {store.openingHours}</p>
@@ -509,8 +500,8 @@ function HomeSummary() {
         <div className="grid gap-4 md:grid-cols-3">
           {cards.map(([title, text, to]) => (
             <Link key={to} to={to} className="card p-6 transition hover:-translate-y-1 hover:shadow-md">
-              <h3 className="text-xl font-bold text-stone-950">{title}</h3>
-              <p className="mt-3 leading-7 text-stone-600">{text}</p>
+              <h3 className="text-xl font-bold text-slate-950">{title}</h3>
+              <p className="mt-3 leading-7 text-slate-600">{text}</p>
               <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-sky-700">Xem chi tiết <ChevronRight size={17} /></span>
             </Link>
           ))}
@@ -583,10 +574,10 @@ function ContactPage() {
             <div className="container-page grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
               <SectionTitle eyebrow="Liên hệ" title="Kết nối với Giặt Sấy Hiệp Hưng" description="Khách có thể gọi hotline, nhắn Zalo/Facebook hoặc xem chính sách giao nhận trước khi đặt lịch." />
               <div className="grid gap-4 sm:grid-cols-2">
-                <a className="card p-5 transition hover:shadow-md" href={`tel:${store.hotline}`}><Phone className="mb-3 text-sky-700" /> <strong>{store.hotline}</strong><p className="mt-2 text-sm text-stone-600">Gọi nhanh hotline</p></a>
-                <a className="card p-5 transition hover:shadow-md" href={store.zaloUrl}><ExternalLink className="mb-3 text-sky-700" /> <strong>Zalo</strong><p className="mt-2 text-sm text-stone-600">Nhắn tin xác nhận đơn</p></a>
-                <a className="card p-5 transition hover:shadow-md" href={store.facebookUrl}><ExternalLink className="mb-3 text-sky-700" /> <strong>Facebook</strong><p className="mt-2 text-sm text-stone-600">Theo dõi cửa hàng</p></a>
-                <div className="card p-5"><MapPin className="mb-3 text-sky-700" /> <strong>Địa chỉ</strong><p className="mt-2 text-sm text-stone-600">{store.address}</p></div>
+                <a className="card p-5 transition hover:shadow-md" href={`tel:${store.hotline}`}><Phone className="mb-3 text-sky-700" /> <strong>{store.hotline}</strong><p className="mt-2 text-sm text-slate-600">Gọi nhanh hotline</p></a>
+                <a className="card p-5 transition hover:shadow-md" href={store.zaloUrl}><ExternalLink className="mb-3 text-sky-700" /> <strong>Zalo</strong><p className="mt-2 text-sm text-slate-600">Nhắn tin xác nhận đơn</p></a>
+                <a className="card p-5 transition hover:shadow-md" href={store.facebookUrl}><ExternalLink className="mb-3 text-sky-700" /> <strong>Facebook</strong><p className="mt-2 text-sm text-slate-600">Theo dõi cửa hàng</p></a>
+                <div className="card p-5"><MapPin className="mb-3 text-sky-700" /> <strong>Địa chỉ</strong><p className="mt-2 text-sm text-slate-600">{store.address}</p></div>
               </div>
             </div>
           </section>
@@ -594,192 +585,6 @@ function ContactPage() {
         </>
       )}
     </PublicPage>
-  )
-}
-
-function AdminPage() {
-  const [loggedIn, setLoggedIn] = useState(localStorage.getItem('myhiep_admin') === '1')
-  const [password, setPassword] = useState('')
-
-  if (!loggedIn) {
-    return (
-      <main className="grid min-h-screen place-items-center bg-slate-50 px-4">
-        <form className="card w-full max-w-sm p-6" onSubmit={(event) => { event.preventDefault(); localStorage.setItem('myhiep_admin', '1'); setLoggedIn(true) }}>
-          <h1 className="text-2xl font-bold text-slate-950">Admin Hiệp Hưng</h1>
-          <p className="mt-2 text-sm text-slate-600">Bản demo dùng đăng nhập frontend. Backend đã có cấu trúc Users/Roles để mở rộng xác thực thật.</p>
-          <label className="mt-5 block">
-            <span className="label">Mật khẩu demo</span>
-            <input className="field" type="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="admin123" />
-          </label>
-          <button className="btn-primary mt-5 w-full">Đăng nhập</button>
-          <Link className="mt-4 block text-center text-sm font-semibold text-sky-700" to="/">Về trang chủ</Link>
-        </form>
-      </main>
-    )
-  }
-
-  return <AdminDashboard onLogout={() => { localStorage.removeItem('myhiep_admin'); setLoggedIn(false) }} />
-}
-
-function AdminDashboard({ onLogout }) {
-  const [tab, setTab] = useState('bookings')
-  const [status, setStatus] = useState('')
-  const [bookings, setBookings] = useState([])
-  const [services, setServices] = useState([])
-  const [prices, setPrices] = useState([])
-  const [store, setStore] = useState(defaultStore)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
-
-  const loadAdmin = async () => {
-    setLoading(true)
-    setError('')
-    try {
-      const [bookingData, serviceData, priceData, storeData] = await Promise.all([
-        api.adminBookings(status),
-        api.adminServices(),
-        api.adminPrices(),
-        api.getStoreSettings(),
-      ])
-      setBookings(bookingData || [])
-      setServices(serviceData || [])
-      setPrices(priceData || [])
-      setStore({ ...defaultStore, ...storeData })
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => { loadAdmin() }, [status])
-
-  return (
-    <main className="min-h-screen bg-slate-50 px-4 py-6 sm:px-6 lg:px-8">
-      <div className="container-page">
-        <div className="mb-6 flex flex-col justify-between gap-4 rounded-lg bg-white p-5 shadow-sm sm:flex-row sm:items-center">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-950">Quản trị Giặt Sấy Hiệp Hưng</h1>
-            <p className="text-sm text-slate-600">Quản lý đơn đặt lịch, dịch vụ, bảng giá và thông tin cửa hàng.</p>
-          </div>
-          <div className="flex gap-2">
-            <Link className="btn-secondary py-2" to="/">Trang chủ</Link>
-            <button className="btn-primary py-2" onClick={onLogout}>Đăng xuất</button>
-          </div>
-        </div>
-        <div className="mb-5 flex flex-wrap gap-2">
-          {['bookings', 'services', 'prices', 'store'].map((item) => (
-            <button key={item} className={tab === item ? 'btn-primary py-2' : 'btn-secondary py-2'} onClick={() => setTab(item)}>
-              {item === 'bookings' ? 'Đơn đặt lịch' : item === 'services' ? 'Dịch vụ' : item === 'prices' ? 'Bảng giá' : 'Cửa hàng'}
-            </button>
-          ))}
-        </div>
-        {loading && <StateLine icon={<LoaderCircle className="animate-spin" />} text="Đang tải dữ liệu admin..." />}
-        {error && <StateLine text={`Không gọi được API admin: ${error}`} />}
-        {tab === 'bookings' && <BookingsAdmin bookings={bookings} status={status} setStatus={setStatus} onReload={loadAdmin} />}
-        {tab === 'services' && <SimpleList title="Dịch vụ" items={services} type="service" onReload={loadAdmin} />}
-        {tab === 'prices' && <SimpleList title="Bảng giá" items={prices} type="price" onReload={loadAdmin} />}
-        {tab === 'store' && <StoreAdmin store={store} setStore={setStore} onReload={loadAdmin} />}
-      </div>
-    </main>
-  )
-}
-
-function BookingsAdmin({ bookings, status, setStatus, onReload }) {
-  async function update(id, nextStatus) {
-    await api.updateBookingStatus(id, nextStatus)
-    onReload()
-  }
-
-  return (
-    <section className="card overflow-hidden">
-      <div className="flex flex-col gap-3 border-b border-slate-100 p-4 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-xl font-bold">Danh sách đơn</h2>
-        <select className="field max-w-xs" value={status} onChange={(event) => setStatus(event.target.value)}>
-          <option value="">Tất cả trạng thái</option>
-          {Object.entries(statusLabels).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
-        </select>
-      </div>
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[900px] text-left text-sm">
-          <thead className="bg-slate-50">
-            <tr><th className="p-4">Khách</th><th className="p-4">Liên hệ</th><th className="p-4">Dịch vụ</th><th className="p-4">Giờ hẹn</th><th className="p-4">Trạng thái</th><th className="p-4">Cập nhật</th></tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
-            {bookings.map((booking) => (
-              <tr key={booking.id}>
-                <td className="p-4 font-semibold">{booking.customerName}<p className="font-normal text-slate-500">{booking.address}</p></td>
-                <td className="p-4">{booking.phone}</td>
-                <td className="p-4">{booking.serviceName || booking.service?.name}</td>
-                <td className="p-4">{booking.pickupTime ? new Date(booking.pickupTime).toLocaleString('vi-VN') : ''}</td>
-                <td className="p-4">{statusLabels[booking.status] || booking.status}</td>
-                <td className="p-4">
-                  <select className="field" value={booking.status} onChange={(event) => update(booking.id, event.target.value)}>
-                    {Object.entries(statusLabels).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
-                  </select>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
-  )
-}
-
-function SimpleList({ title, items, type, onReload }) {
-  const empty = type === 'price' ? { name: '', priceText: '', note: '' } : { name: '', description: '', isActive: true }
-  const [draft, setDraft] = useState(empty)
-  const save = async () => {
-    if (type === 'price') await api.savePrice(draft)
-    else await api.saveService(draft)
-    setDraft(empty)
-    onReload()
-  }
-  const remove = async (id) => {
-    if (type === 'price') await api.deletePrice(id)
-    else await api.deleteService(id)
-    onReload()
-  }
-  return (
-    <section className="card p-5">
-      <h2 className="text-xl font-bold">{title}</h2>
-      <div className="mt-4 grid gap-3 md:grid-cols-3">
-        <input className="field" placeholder="Tên" value={draft.name} onChange={(e) => setDraft({ ...draft, name: e.target.value })} />
-        <input className="field" placeholder={type === 'price' ? 'Giá' : 'Mô tả'} value={type === 'price' ? draft.priceText : draft.description} onChange={(e) => setDraft({ ...draft, [type === 'price' ? 'priceText' : 'description']: e.target.value })} />
-        <button className="btn-primary" onClick={save}>Thêm mới</button>
-      </div>
-      <div className="mt-5 grid gap-3">
-        {items.map((item) => (
-          <div className="flex flex-col justify-between gap-3 rounded-md border border-slate-100 p-4 sm:flex-row sm:items-center" key={item.id}>
-            <div><p className="font-semibold">{item.name}</p><p className="text-sm text-slate-600">{item.priceText || item.description} {item.note || ''}</p></div>
-            <button className="btn-secondary py-2" onClick={() => remove(item.id)}>Xóa</button>
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-function StoreAdmin({ store, setStore, onReload }) {
-  const fields = ['brandName', 'address', 'hotline', 'zaloUrl', 'facebookUrl', 'openingHours', 'deliveryPolicy']
-  async function save() {
-    await api.updateStoreSettings(store)
-    onReload()
-  }
-  return (
-    <section className="card p-5">
-      <h2 className="text-xl font-bold">Thông tin cửa hàng</h2>
-      <div className="mt-4 grid gap-3 md:grid-cols-2">
-        {fields.map((field) => (
-          <label key={field}>
-            <span className="label">{field}</span>
-            <input className="field" value={store[field] || ''} onChange={(event) => setStore({ ...store, [field]: event.target.value })} />
-          </label>
-        ))}
-      </div>
-      <button className="btn-primary mt-5" onClick={save}>Lưu cài đặt</button>
-    </section>
   )
 }
 
@@ -798,4 +603,6 @@ function App() {
 }
 
 export default App
+
+
 
