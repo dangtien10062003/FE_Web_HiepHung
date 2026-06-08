@@ -1,5 +1,5 @@
 ﻿import { useEffect, useState } from 'react'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import {
   BadgeCheck,
   CalendarCheck,
@@ -92,6 +92,26 @@ function Header({ store }) {
       {open && <div className="border-t border-sky-100 bg-white px-4 py-4 lg:hidden">{menu}</div>}
     </header>
   )
+}
+
+function HashScroll() {
+  const { hash, pathname } = useLocation()
+
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+
+    const targetId = hash.slice(1)
+    const timeout = window.setTimeout(() => {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 80)
+
+    return () => window.clearTimeout(timeout)
+  }, [hash, pathname])
+
+  return null
 }
 
 function SectionTitle({ eyebrow, title, description }) {
@@ -271,56 +291,70 @@ function Prices({ prices, loading, error }) {
 
 function Process() {
   const steps = [
-    ['Đặt lịch', 'Khách chọn dịch vụ, giờ nhận và ghi chú món đồ.', CalendarCheck],
-    ['Xác nhận', 'Nhân viên gọi/Zalo để chốt giờ và khu vực giao nhận.', Phone],
-    ['Nhận đồ', 'Kiểm số lượng, tình trạng và các món cần xử lý riêng.', PackageCheck],
-    ['Xử lý', 'Giặt, sấy, ủi hoặc vệ sinh theo đúng nhóm dịch vụ.', WashingMachine],
-    ['Trả đồ', 'Giao lại, cập nhật hoàn tất và nhận phản hồi.', Truck],
+    ['Nhận hàng và tư vấn', 'Tiếp nhận đồ, kiểm tra tình trạng và tư vấn dịch vụ phù hợp.', Shirt, 'left'],
+    ['Phân loại và xử lý điểm bẩn', 'Tách màu, tách chất liệu và xử lý trước các vết bẩn cần chăm sóc riêng.', PackageCheck, 'left'],
+    ['Giặt / Wash / Hấp', 'Giặt, hấp hoặc vệ sinh theo đúng nhóm vải và yêu cầu của khách.', WashingMachine, 'left'],
+    ['Sấy / Ủi / Spa', 'Sấy khô, ủi phẳng, làm thơm và chăm form trước khi hoàn thiện.', Sparkles, 'right'],
+    ['Gấp xếp - đóng gói', 'Gấp gọn, kiểm lại từng món và đóng gói sạch sẽ trước khi giao.', BadgeCheck, 'right'],
+    ['Giao hàng', 'Giao tận nơi, xác nhận hoàn tất và tiếp nhận phản hồi sau dịch vụ.', Truck, 'right'],
   ]
+  const leftSteps = steps.filter((step) => step[3] === 'left').reverse()
+  const rightSteps = steps.filter((step) => step[3] === 'right')
   return (
     <section id="quytrinh" className="section process-section bg-sky-50">
       <div className="container-page">
-        <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+        <div className="mx-auto max-w-3xl text-center">
           <SectionTitle
             eyebrow="Quy trình"
-            title="Đường đi của một đơn giặt từ lúc đặt tới lúc trả"
-            description="Thiết kế lại theo dạng luồng xử lý: nhìn vào thấy ngay từng chặng, ai đang phụ trách và bước nào cần khách xác nhận."
+            title="Quy trình làm việc"
+            description="Mỗi đơn hàng được đi qua 6 bước rõ ràng: nhận đồ, phân loại, xử lý, hoàn thiện, đóng gói và giao lại đúng hẹn."
           />
-          <div className="process-summary">
-            <p className="text-sm font-black uppercase tracking-wide text-sky-700">Theo dõi rõ từng bước</p>
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
-              {['Nhận lịch', 'Xử lý tại tiệm', 'Trả tận nơi'].map((item) => (
-                <span key={item} className="rounded-md border border-sky-200 bg-white px-4 py-3 text-sm font-bold text-slate-800 shadow-sm shadow-sky-100">
-                  {item}
-                </span>
-              ))}
-            </div>
+          <div className="process-wave" aria-hidden="true">
+            <span />
+            <span />
+            <span />
           </div>
         </div>
-        <div className="process-roadmap">
-          <div className="process-line" aria-hidden="true" />
+        <div className="process-infographic">
+          <div className="process-dots" aria-hidden="true" />
+          <div className="process-ring" aria-hidden="true" />
+          <div className="process-column process-column-left">
+            {leftSteps.map(([step, text, Icon], index) => (
+              <ProcessItem key={step} index={3 - index} title={step} text={text} Icon={Icon} side="left" />
+            ))}
+          </div>
+          <div className="process-center" aria-label="Giặt Sấy Hiệp Hưng">
+            <span className="process-center-icon"><WashingMachine size={54} /></span>
+            <strong>Giặt Sấy<br />Hiệp Hưng</strong>
+            <small>Sạch - thơm - đúng hẹn</small>
+          </div>
+          <div className="process-column process-column-right">
+            {rightSteps.map(([step, text, Icon], index) => (
+              <ProcessItem key={step} index={index + 4} title={step} text={text} Icon={Icon} side="right" />
+            ))}
+          </div>
+        </div>
+        <div className="process-mobile-list">
           {steps.map(([step, text, Icon], index) => (
-            <article key={step} className={`process-step ${index % 2 ? 'process-step-lower' : ''}`}>
-              <div className="process-node">
-                <span>{String(index + 1).padStart(2, '0')}</span>
-              </div>
-              <div className="process-card">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-wide text-sky-700">Bước {index + 1}</p>
-                    <h3 className="mt-2 text-xl font-black text-slate-950">{step}</h3>
-                  </div>
-                  <span className="grid size-12 shrink-0 place-items-center rounded-md bg-sky-100 text-sky-700">
-                    <Icon size={24} />
-                  </span>
-                </div>
-                <p className="mt-4 text-sm leading-6 text-slate-600">{text}</p>
-              </div>
-            </article>
+            <ProcessItem key={step} index={index + 1} title={step} text={text} Icon={Icon} side="right" />
           ))}
         </div>
       </div>
     </section>
+  )
+}
+
+function ProcessItem({ index, title, text, Icon, side }) {
+  return (
+    <article className={`process-item process-item-${side}`}>
+      <div className="process-pill">
+        <span>{String(index).padStart(2, '0')}. {title}</span>
+      </div>
+      <p>{text}</p>
+      <div className="process-icon">
+        <Icon size={30} />
+      </div>
+    </article>
   )
 }
 
@@ -557,6 +591,7 @@ function LandingPage() {
         <>
           <Hero store={store} />
           <HomeSummary />
+          <Process />
           <TestimonialsFaq />
         </>
       )}
@@ -629,15 +664,19 @@ function ContactPage() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/gioi-thieu" element={<AboutPage />} />
-      <Route path="/dich-vu" element={<ServicesPage />} />
-      <Route path="/bang-gia" element={<PricesPage />} />
-      <Route path="/quy-trinh" element={<ProcessPage />} />
-      <Route path="/dat-lich" element={<BookingPage />} />
-      <Route path="/lien-he" element={<ContactPage />} />
-    </Routes>
+    <>
+      <HashScroll />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/trang-chu" element={<LandingPage />} />
+        <Route path="/gioi-thieu" element={<AboutPage />} />
+        <Route path="/dich-vu" element={<ServicesPage />} />
+        <Route path="/bang-gia" element={<PricesPage />} />
+        <Route path="/quy-trinh" element={<ProcessPage />} />
+        <Route path="/dat-lich" element={<BookingPage />} />
+        <Route path="/lien-he" element={<ContactPage />} />
+      </Routes>
+    </>
   )
 }
 
