@@ -584,15 +584,109 @@ function HomeSummary() {
   )
 }
 
+function HomeThemeServices({ services }) {
+  const icons = [WashingMachine, Shirt, PackageCheck, Sparkles, CheckCircle2, Truck, BadgeCheck, Clock]
+  const featured = services.slice(0, 8)
+  return (
+    <section className="home-theme-section home-service-showcase">
+      <div className="container-page">
+        <div className="theme-heading">
+          <p>Dịch vụ tại tiệm</p>
+          <h2>CHĂM SÓC ĐỒ THEO TỪNG NHU CẦU</h2>
+        </div>
+        <div className="home-service-orbit">
+          <div className="home-service-photo">
+            <img src={heroImage} alt="Dịch vụ giặt sấy Hiệp Hưng" />
+          </div>
+          <div className="home-service-list">
+            {featured.map((service, index) => {
+              const Icon = icons[index % icons.length]
+              return (
+                <article className="home-service-item" key={service.id || service.name}>
+                  <span className="home-service-icon"><Icon size={24} /></span>
+                  <div>
+                    <h3>{service.name}</h3>
+                    <p>{service.description}</p>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function HomeThemePrices({ prices }) {
+  return (
+    <section className="home-theme-section home-price-menu">
+      <div className="container-page">
+        <div className="theme-heading">
+          <p>Bảng giá tham khảo</p>
+          <h2>DỄ ƯỚC LƯỢNG TRƯỚC KHI ĐẶT LỊCH</h2>
+        </div>
+        <div className="home-price-grid">
+          {prices.slice(0, 8).map((item) => (
+            <article className="home-price-row" key={item.id || item.name}>
+              <div>
+                <h3>{item.name}</h3>
+                <p>{item.note}</p>
+              </div>
+              <strong>{item.priceText}</strong>
+            </article>
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <Link className="btn-secondary" to="/bang-gia">Xem toàn bộ bảng giá</Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function HomeThemeGalleryReview() {
+  const gallery = [
+    ['Kiểm đồ', 'Nhận và ghi chú từng nhóm đồ', Shirt],
+    ['Phân loại', 'Tách màu, tách chất liệu trước khi giặt', PackageCheck],
+    ['Hoàn thiện', 'Sấy, ủi, gấp và đóng gói gọn gàng', Sparkles],
+    ['Giao lại', 'Sắp tuyến giao nhận trong khu vực hỗ trợ', Truck],
+  ]
+  return (
+    <section className="home-theme-section home-gallery-review">
+      <div className="container-page">
+        <div className="theme-heading">
+          <p>Trải nghiệm khách hàng</p>
+          <h2>QUY TRÌNH RÕ RÀNG, DỄ THEO DÕI</h2>
+        </div>
+        <div className="home-gallery-grid">
+          {gallery.map(([title, text, Icon]) => (
+            <article className="home-gallery-card" key={title}>
+              <Icon size={34} />
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+        <div className="home-review-strip">
+          <p>Khách có thể ghi chú mùi hương, thời gian nhận đồ, đồ cần xử lý riêng hoặc yêu cầu xác nhận giá trước khi làm.</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function LandingPage() {
   return (
     <PublicPage title="Giặt Sấy Hiệp Hưng - Đặt lịch giặt sấy giao nhận tận nhà">
-      {({ store }) => (
+      {({ store, services, prices }) => (
         <>
           <Hero store={store} />
-          <HomeSummary />
+          <HomeThemeServices services={services} />
+          <HomeThemePrices prices={prices} />
           <Process />
-          <TestimonialsFaq />
+          <HomeThemeGalleryReview />
+          <BookingForm services={services} />
         </>
       )}
     </PublicPage>
