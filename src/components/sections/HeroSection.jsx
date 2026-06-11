@@ -4,7 +4,7 @@ import heroImage from '../../assets/laundry-hero.png'
 
 export function HeroSection({ store }) {
   const shopBoard = [
-    ['Nhận đồ', '7:00 - 19:30'],
+    ['Giờ làm việc', store.openingHours],
     ['Hoàn tất', '24 - 48 giờ'],
     ['Giao nhận', 'Trong 3km'],
   ]

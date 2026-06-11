@@ -28,7 +28,7 @@ export const fallbackPrices = [
 
 export const defaultStore = {
   brandName: 'Giặt Sấy Hiệp Hưng',
-  address: 'Địa chỉ cửa hàng đang cập nhật',
+  address: '14/75 Nguyễn Quang Diêu, Tân Quý, Tân Phú, Tp HCM',
   hotline: '0900 000 000',
   zaloUrl: 'https://zalo.me/0900000000',
   facebookUrl: 'https://facebook.com/',

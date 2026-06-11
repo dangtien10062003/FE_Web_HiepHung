@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, Phone, WashingMachine, X } from 'lucide-react'
+import { Menu, Phone, X } from 'lucide-react'
+import logo from '../../assets/hiep-hung-logo.png'
 import { navItems } from '../../data/siteData'
 
 export function Header({ store }) {
@@ -18,9 +19,8 @@ export function Header({ store }) {
   return (
     <header className="sticky top-0 z-40 border-b border-sky-100 bg-white/95 backdrop-blur">
       <div className="container-page flex min-h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-3 font-bold text-slate-950">
-          <span className="grid size-10 place-items-center rounded-md border border-sky-200 bg-sky-100 text-sky-700"><WashingMachine size={22} /></span>
-          <span>{store.brandName}</span>
+        <Link to="/" className="flex shrink-0 items-center">
+          <img className="h-12 w-auto sm:h-14" src={logo} alt={store.brandName} />
         </Link>
         <div className="hidden lg:block">{menu}</div>
         <div className="hidden items-center gap-3 lg:flex">
