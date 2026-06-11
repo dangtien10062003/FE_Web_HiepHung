@@ -4,7 +4,7 @@ import { PublicPage } from './PublicPage'
 
 export function ContactPage() {
   return (
-    <PublicPage title="Liên hệ - Giặt Sấy Hiệp Hưng">
+    <PublicPage title="Liên hệ - Giặt Sấy Hiệp">
       {({ store }) => (
         <>
           <ContactSection store={store} />

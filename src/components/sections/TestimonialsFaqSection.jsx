@@ -4,7 +4,7 @@ import { SectionTitle } from '../common/SectionTitle'
 export function TestimonialsFaqSection() {
   const faqs = [
     ['Bao lâu thì giao lại đồ?', 'Thông thường 24-48 giờ tùy dịch vụ và khối lượng. Đơn gấp sẽ được nhân viên xác nhận riêng.'],
-    ['Có nhận giao tận nhà không?', 'Có, Hiệp Hưng hỗ trợ giao nhận tận nhà trong khu vực bán kính 3km.'],
+    ['Có nhận giao tận nhà không?', 'Có, Hiệp hỗ trợ giao nhận tận nhà trong khu vực bán kính 3km.'],
     ['Có giặt đồ cao cấp không?', 'Có nhận đồ cao cấp, vest, áo khoác và các chất liệu cần xử lý riêng.'],
     ['Bán kính 3km tính như thế nào?', 'Backend có DistanceService để tính bằng tọa độ cửa hàng và tọa độ khách theo công thức Haversine.'],
     ['Tôi có thể đổi giờ hẹn không?', 'Có, khách có thể gọi hotline hoặc nhắn Zalo trước giờ hẹn để được hỗ trợ đổi lịch.'],
