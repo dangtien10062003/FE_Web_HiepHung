@@ -1,0 +1,10 @@
+import { PublicPage } from './PublicPage'
+import { ServicesSection } from '../components/sections/ServicesSection'
+
+export function ServicesPage() {
+  return (
+    <PublicPage title="Dịch vụ - Giặt Sấy Hiệp Hưng">
+      {({ services }) => <ServicesSection services={services} />}
+    </PublicPage>
+  )
+}
