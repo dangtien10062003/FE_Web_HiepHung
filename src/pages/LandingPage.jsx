@@ -8,7 +8,7 @@ import { PublicPage } from './PublicPage'
 
 export function LandingPage() {
   return (
-    <PublicPage title="Giặt Sấy Hiệp Hưng - Đặt lịch giặt sấy giao nhận tận nhà">
+    <PublicPage title="Giặt Sấy Hiệp - Đặt lịch giặt sấy giao nhận tận nhà">
       {({ store, services, prices }) => (
         <>
           <HeroSection store={store} />

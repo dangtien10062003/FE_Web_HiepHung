@@ -35,9 +35,9 @@ export function ProcessSection() {
               <ProcessItem key={step} index={3 - index} title={step} text={text} Icon={Icon} side="left" />
             ))}
           </div>
-          <div className="process-center" aria-label="Giặt Sấy Hiệp Hưng">
+          <div className="process-center" aria-label="Giặt Sấy Hiệp">
             <span className="process-center-icon"><WashingMachine size={54} /></span>
-            <strong>Giặt Sấy<br />Hiệp Hưng</strong>
+            <strong>Giặt Sấy<br />Hiệp</strong>
             <small>Sạch - thơm - đúng hẹn</small>
           </div>
           <div className="process-column process-column-right">

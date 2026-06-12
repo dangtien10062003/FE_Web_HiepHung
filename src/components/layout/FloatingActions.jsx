@@ -6,17 +6,12 @@ export function FloatingActions({ store }) {
   const [showBackTop, setShowBackTop] = useState(false)
 
   useEffect(() => {
-    const firstSection = document.querySelector('.section')
-    if (!firstSection) return undefined
+    const handleScroll = () => setShowBackTop(window.scrollY > 240)
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setShowBackTop(!entry.isIntersecting),
-      { rootMargin: '-140px 0px 0px 0px' },
-    )
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
-    observer.observe(firstSection)
-
-    return () => observer.disconnect()
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const contactMethods = [

@@ -13,7 +13,7 @@ export function HomeThemeServicesSection({ services }) {
         </div>
         <div className="home-service-orbit">
           <div className="home-service-photo">
-            <img src={heroImage} alt="Dịch vụ giặt sấy Hiệp Hưng" />
+            <img src={heroImage} alt="Dịch vụ giặt sấy Hiệp" />
           </div>
           <div className="home-service-list">
             {featured.map((service, index) => {

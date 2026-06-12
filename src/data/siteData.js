@@ -27,8 +27,10 @@ export const fallbackPrices = [
 ]
 
 export const defaultStore = {
-  brandName: 'Giặt Sấy Hiệp Hưng',
+  brandName: 'Giặt Sấy Hiệp',
   address: '14/75 Nguyễn Quang Diêu, Tân Quý, Tân Phú, Tp HCM',
+  googleMapEmbedUrl: '14/75 Nguyen Quang Dieu, Tan Quy, Tan Phu, Ho Chi Minh',
+  googleMapUrl: 'https://www.google.com/maps/search/?api=1&query=14%2F75%20Nguyen%20Quang%20Dieu%2C%20Tan%20Quy%2C%20Tan%20Phu%2C%20Ho%20Chi%20Minh',
   hotline: '0900 000 000',
   zaloUrl: 'https://zalo.me/0900000000',
   facebookUrl: 'https://facebook.com/',

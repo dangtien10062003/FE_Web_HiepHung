@@ -3,7 +3,7 @@ import { PublicPage } from './PublicPage'
 
 export function ProcessPage() {
   return (
-    <PublicPage title="Quy trình - Giặt Sấy Hiệp Hưng">
+    <PublicPage title="Quy trình - Giặt Sấy Hiệp">
       {() => <ProcessSection />}
     </PublicPage>
   )
